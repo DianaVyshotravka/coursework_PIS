@@ -1,0 +1,27 @@
+{% extends 'base/main.html' %} {% block content %}
+    <div class="header-bar">
+        <a class="btn " href="{% url 'tasks' %}">Task board</a>
+    <a href="{% url 'reports:new' %}">Create report</a>
+    </div>
+    <div class="header-bar">
+        <div>
+            <h1 class="mb-6 text-3xl">Observe reports</h1>
+        </div>
+    </div>
+<div class="card-body">
+
+    {% for item in items %}
+        <div>
+            <div class="p-6 bg-white rounded-b-xl">
+                    <h2 class="text-2xl">Report: {{ item.name }}</h2>
+                    <p class="text-gray-500">Project: {{ item.project }}</p>
+                <p class="text-gray-500">Description: {{ item.description }}</p>
+                <p class="text-gray-500">Author: {{ item.created_by }}</p>
+                <p class="text-gray-500">Submitted date: {{ item.created_at }}</p>
+                <p class="text-gray-500">File:<a href="{{ item.file.url }}" target="_blank"> {{ item.file.name | cut:"reports/" }} </a>
+                </p>
+                </div>
+        </div>
+    {% endfor %}
+</div>
+{% endblock content %}
